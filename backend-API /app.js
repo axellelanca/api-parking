@@ -9,7 +9,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const parkingRoutes = require('./routes/parking');
-//const authRoutes = require('./routes/auth');
+const authRoutes = require('./routes/auth');
 
 
 // Express app
@@ -20,7 +20,7 @@ app.use(bodyParser.json()); //application/json
 
 //Routes
 app.use('/parking', parkingRoutes);
-//app.use('/auth', authRoutes);
+app.use('/auth', authRoutes);
 
 // Settings to avoid CORS errors
 app.use((req, res, next) => {
