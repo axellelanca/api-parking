@@ -12,7 +12,8 @@ const parkingSlotSchema = new Schema({
     },
     available: {
         type: Boolean,
-        required: false
+        default: true,
+        required: true
     },
     time: {
         type: String,
