@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
+h1 {
+    font-size: 2vw;
+    font-family: 'Archivo Black', sans-serif;
+}
+
+#wrapper {
+    margin-top: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eeeee4;
+    width: 70%;
+    max-width: 900px;
+    border-radius: 30px;
+    -webkit-box-shadow: 1px 5px 14px 4px rgba(181,196,235,0.45);
+    box-shadow: 1px 5px 14px 4px rgba(181,196,235,0.45);
+}
+
+h2{
+    margin-top: 55px;
+}
+
+.logSection{
+    /*border: solid 1px grey;*/
+    height: 500px;
+    width: 50%
+}
+
+.sectionLogin{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: #cccccc 1px solid;
+}
+
+
+form {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eeeee4;
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+    .auth-form {
+        width: 40rem;
+    }
+}
