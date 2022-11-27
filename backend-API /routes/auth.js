@@ -1,6 +1,6 @@
 const express = require('express');
 const { body } = require('express-validator');
-
+const cors = require('cors');
 const User = require('../models/user');
 const authController = require('../controllers/auth');
 const {isEmpty} = require("validator");
@@ -38,6 +38,6 @@ router.put('/signup', [
         .isLength({min:8})
 ], authController.signup);
 
-router.post('/login', authController.login);
+router.post('/login',cors(), authController.login);
 
 module.exports = router;

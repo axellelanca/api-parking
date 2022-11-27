@@ -22,8 +22,6 @@ exports.getSpots = (req, res, next) => {
             }
             next();
         })
-
-
 };
 
 /*
