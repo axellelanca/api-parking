@@ -11,6 +11,7 @@ dotenv.config();
 
 const parkingRoutes = require('./routes/parking');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/users');
 
 
 // Express app
@@ -29,6 +30,7 @@ app.use(bodyParser.json()); //application/json
 //Routes
 app.use('/parking', parkingRoutes);
 app.use('/auth', authRoutes);
+app.use(userRoutes);
 
 // Settings to avoid CORS errors
 app.use((req, res, next) => {
