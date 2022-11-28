@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SubmitBtn = (props:any):any => {
+export const SubmitBtn = (props) => {
     return (
         <button
             id={props.id}

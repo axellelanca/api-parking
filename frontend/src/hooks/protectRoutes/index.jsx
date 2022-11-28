@@ -1,9 +1,8 @@
 import { Outlet, Navigate } from "react-router-dom";
 import {useAuth} from "../auth";
 
-export const ProtectRoutes = () => {
-    const { cookies } = useAuth();
-
+export const ProtectRoutes = ({ token }) => {
+    
     // if exists token in cookies follow the application
-    return cookies.token ? <Outlet/> : <Navigate to={'/login'} exact />
+    return token ? <Outlet/> : <Navigate to={'/login'} exact />
 }

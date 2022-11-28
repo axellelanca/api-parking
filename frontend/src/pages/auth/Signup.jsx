@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment,useState} from 'react';
 import { Link } from "react-router-dom";
 import {Input} from "../../components/form/Input";
 import {SubmitBtn} from "../../components/form/SubmitBtn";
@@ -7,21 +7,32 @@ import './Auth.css';
 
 
 export const SignUp = () => {
+    const [userInfos, setUserInfo] = useState({fName : "", lName : "", email : "", password :""})
+
+    const HandleChangeEvent = (e) =>{
+        const {value, name} = e.target;
+        
+        setUserInfo({
+            ...userInfos,      
+            [name]: value,
+            })
+    }
 
     const signUpHandler = (e, authData) => {
+        console.log(`${userInfos.fName} ${userInfos.lName} ${userInfos.email} ${userInfos.password}`)
         e.preventDefault();
 
-        fetch('http://localhost:8080/auth/signup',{
+        fetch('/auth/signup',{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 // Replace with form data
-                firstName: 'Axelle',
-                lastName: 'Lança',
-                password: 'azerty',
-                email: 'axl@gmail.com',
+                firstName: authData.fName,
+                lastName: authData.lName,
+                password: authData.password,
+                email: authData.email,
                 role: 'user'
             })
         })
@@ -48,33 +59,44 @@ export const SignUp = () => {
             <Header/>
             <Link to="/login">Back to login page</Link>
             <form
-                onSubmit={e => {
-
-                }}
+                onSubmit={e => signUpHandler(e, userInfos)}
             >
                 <Input
                     id="fName"
                     label="Your first name"
                     type="text"
                     control="input"
+                    name="fName"
+                    value={userInfos.fName}
+                    handler={HandleChangeEvent}
+                    
                 />
                 <Input
-                    id="LName"
+                    id="lName"
                     label="Your last name"
                     type="text"
                     control="input"
+                    name="lName"
+                    value={userInfos.lName}
+                    handler={HandleChangeEvent}
                 />
                 <Input
                     id="email"
                     label="Your E-mail"
                     type="email"
                     control="input"
+                    name="email"
+                    value={userInfos.email}
+                    handler={HandleChangeEvent}
                 />
                 <Input
                     id="password"
                     label="Your Password"
                     type="password"
                     control="input"
+                    name="password"
+                    value={userInfos.password}
+                    handler={HandleChangeEvent}
                 />
                 <SubmitBtn
                     id="submit"

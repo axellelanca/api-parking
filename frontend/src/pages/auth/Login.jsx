@@ -1,8 +1,9 @@
 import React, {Fragment, useState} from 'react';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Input } from '../../components/form/Input';
 import './Auth.css';
 import {SubmitBtn} from "../../components/form/SubmitBtn";
+import axios from "axios";
 
 export const Login = () => {
 
@@ -10,31 +11,25 @@ export const Login = () => {
 
     const HandleChangeEvent = (e) =>{
         const {value, name} = e.target;
-        setUserInfo((prevValue) => {
-            if (name === "email") {
-                return {
-                    email : value,
-                    password : prevValue.password,
-                }; 
-            } else if(name === "password") {
-                return {
-                    email : prevValue.email,
-                    password : value,
-                }
-            }
-        })
+        
+
+        setUserInfo({
+            ...userInfos,      
+            [name]: value,
+            })
     }
 
-    const loginHandler = (event) => {
+    const loginHandler = (event, authData) => {
+        console.log(userInfos.email + " " + userInfos.password)
         event.preventDefault();
-        fetch('http://localhost:8080/auth/login', {
+        fetch('/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
             },
             body: JSON.stringify({
-                email: userInfos.email,
-                password: userInfos.password
+                email: authData.email,
+                password: authData.password
             })
         })
             .then(res => {
@@ -45,10 +40,12 @@ export const Login = () => {
                 console.log('Error!');
                 throw new Error('Could not authenticate you!');
             }
+
             return res.json();
             })
             .then(resData => {
-                console.log(resData);
+                window.localStorage.setItem('token', resData.token);
+                window.location.href = '/home';
             })
             .catch(err => {
                 console.log(err);
@@ -61,7 +58,7 @@ export const Login = () => {
             <div className="logSection sectionLogin">
                 <h2>Login</h2>
                 <form
-                    onSubmit={loginHandler}
+                    onSubmit={e => loginHandler(e, userInfos)}
                 >
                     <Input
                         id="email"
@@ -69,6 +66,8 @@ export const Login = () => {
                         type="email"
                         control="input"
                         name="email"
+                        value={userInfos.email}
+                        handler={HandleChangeEvent}
                     />
                     <Input
                         id="password"
@@ -76,6 +75,8 @@ export const Login = () => {
                         type="password"
                         control="input"
                         name="password"
+                        value={userInfos.password}
+                        handler={HandleChangeEvent}
                     />
                     <SubmitBtn
                         id="submit"

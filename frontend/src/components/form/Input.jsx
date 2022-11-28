@@ -13,6 +13,8 @@ export const Input = (props) => {
                 required={props.required}
                 placeholder={props.placeholder}
                 name={props.name}
+                onChange={props.handler}
+                value={props.value}
 
             />
         )}
