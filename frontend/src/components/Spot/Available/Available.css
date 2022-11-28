@@ -1,0 +1,13 @@
+.available {
+    padding: 3px 10px;
+    border: 1px solid seagreen;
+    background-color: lightgreen;
+    border-radius: 5px;
+}
+
+.notAvailable {
+    padding: 3px 10px;
+    border: 1px solid firebrick;
+    background-color: palevioletred;
+    border-radius: 5px;
+}
