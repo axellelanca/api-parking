@@ -115,7 +115,7 @@ exports.updateSpot = (req, res, next) => {
 }
 
 exports.deleteSpot = (req, res, next) => {
-    const spotId = req.body.spotId;
+    const spotId = req.params.spotId;
     Spot.findById(spotId)
         .then(spot => {
             if(!spot){

@@ -18,16 +18,17 @@ const userSchema = new Schema({
         //type: Schema.Types.ObjectId,
         type: String,
         ref: 'Role',
-        type: String
+        required: true
     },
     password: {
         type: String,
         required: true
     },
     spot: {
-        type: Schema.Types.ObjectId,
-        ref: 'Parking_slot',
-        required: false
+        //type: Schema.Types.ObjectId,
+        type: String,
+        // ref: 'Parking_slot',
+        default: null
     }
 });
 
